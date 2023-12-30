@@ -30,8 +30,6 @@ export class MarksModal {
 
   componentWillLoad() {
     this.arrayDataWatcher(this.buttons);
-    console.log(this.buttons, 'Original');
-    console.log(this._buttons, 'New Array');
   }
 
   private handleCancel = () => {
@@ -52,13 +50,9 @@ export class MarksModal {
           <div class="body">
             <slot />
           </div>
-          {/* <div class="footer">
-            <marks-button text="confirm" appearance={this.appearance}></marks-button>
-          </div> */}
           <div class="footer">
             {this._buttons.map((button, index) => (
-              // <marks-button text={button.text} appearance={index === 0 && this.appearance} />
-              <marks-button text={button.text} appearance={index === 0 && this.appearance}></marks-button>
+              <marks-button text={button.text} appearance={index === 0 && this.appearance} />
             ))}
           </div>
         </div>
