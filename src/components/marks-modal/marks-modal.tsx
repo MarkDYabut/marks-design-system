@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, getAssetPath } from '@stencil/core';
+import { Component, Host, h, Prop, getAssetPath, State } from '@stencil/core';
 
 @Component({
   tag: 'marks-modal',
@@ -16,6 +16,23 @@ export class MarksModal {
   @Prop() closeIcon = 'x.svg';
   @Prop() header: string;
   @Prop() appearance: string;
+  @Prop() buttons: string;
+
+  @State() _buttons: Array<any>;
+
+  arrayDataWatcher(buttons) {
+    if(typeof buttons === 'string') {
+      this._buttons = JSON.parse(buttons);
+    } else {
+      this._buttons = buttons;
+    }
+  }
+
+  componentWillLoad() {
+    this.arrayDataWatcher(this.buttons);
+    console.log(this.buttons, 'Original');
+    console.log(this._buttons, 'New Array');
+  }
 
   private handleCancel = () => {
     this.isopen = false;

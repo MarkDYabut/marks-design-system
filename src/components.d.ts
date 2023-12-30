@@ -12,6 +12,7 @@ export namespace Components {
     }
     interface MarksModal {
         "appearance": string;
+        "buttons": string;
         "closeIcon": string;
         "header": string;
         "isopen": boolean;
@@ -63,6 +64,7 @@ declare namespace LocalJSX {
     }
     interface MarksModal {
         "appearance"?: string;
+        "buttons"?: string;
         "closeIcon"?: string;
         "header"?: string;
         "isopen"?: boolean;
