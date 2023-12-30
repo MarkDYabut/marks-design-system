@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, getAssetPath, State } from '@stencil/core';
+import { Component, Host, h, Prop, getAssetPath, State, EventEmitter, Event } from '@stencil/core';
 
 @Component({
   tag: 'marks-modal',
@@ -28,12 +28,18 @@ export class MarksModal {
     }
   }
 
+  @Event() private action: EventEmitter;
+
   componentWillLoad() {
     this.arrayDataWatcher(this.buttons);
   }
 
   private handleCancel = () => {
     this.isopen = false;
+  };
+
+  private handleAction = () => {
+    this.action.emit();
   };
 
   render() {
@@ -52,7 +58,10 @@ export class MarksModal {
           </div>
           <div class="footer">
             {this._buttons.map((button, index) => (
-              <marks-button text={button.text} appearance={index === 0 && this.appearance} />
+              <marks-button 
+                onClick={index === 0 ? this.handleAction : this.handleCancel} 
+                text={button.text} 
+                appearance={index === 0 && this.appearance} />
             ))}
           </div>
         </div>

@@ -32,6 +32,10 @@ export namespace Components {
         "middle": string;
     }
 }
+export interface MarksModalCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLMarksModalElement;
+}
 declare global {
     interface HTMLMarksButtonElement extends Components.MarksButton, HTMLStencilElement {
     }
@@ -39,7 +43,18 @@ declare global {
         prototype: HTMLMarksButtonElement;
         new (): HTMLMarksButtonElement;
     };
+    interface HTMLMarksModalElementEventMap {
+        "action": any;
+    }
     interface HTMLMarksModalElement extends Components.MarksModal, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLMarksModalElementEventMap>(type: K, listener: (this: HTMLMarksModalElement, ev: MarksModalCustomEvent<HTMLMarksModalElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLMarksModalElementEventMap>(type: K, listener: (this: HTMLMarksModalElement, ev: MarksModalCustomEvent<HTMLMarksModalElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLMarksModalElement: {
         prototype: HTMLMarksModalElement;
@@ -68,6 +83,7 @@ declare namespace LocalJSX {
         "closeIcon"?: string;
         "header"?: string;
         "isopen"?: boolean;
+        "onAction"?: (event: MarksModalCustomEvent<any>) => void;
     }
     interface MyComponent {
         /**
