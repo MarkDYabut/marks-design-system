@@ -10,6 +10,8 @@ export namespace Components {
         "appearance": string;
         "text": string;
     }
+    interface MarksModal {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -32,6 +34,12 @@ declare global {
         prototype: HTMLMarksButtonElement;
         new (): HTMLMarksButtonElement;
     };
+    interface HTMLMarksModalElement extends Components.MarksModal, HTMLStencilElement {
+    }
+    var HTMLMarksModalElement: {
+        prototype: HTMLMarksModalElement;
+        new (): HTMLMarksModalElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -40,6 +48,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "marks-button": HTMLMarksButtonElement;
+        "marks-modal": HTMLMarksModalElement;
         "my-component": HTMLMyComponentElement;
     }
 }
@@ -47,6 +56,8 @@ declare namespace LocalJSX {
     interface MarksButton {
         "appearance"?: string;
         "text"?: string;
+    }
+    interface MarksModal {
     }
     interface MyComponent {
         /**
@@ -64,6 +75,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "marks-button": MarksButton;
+        "marks-modal": MarksModal;
         "my-component": MyComponent;
     }
 }
@@ -72,6 +84,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "marks-button": LocalJSX.MarksButton & JSXBase.HTMLAttributes<HTMLMarksButtonElement>;
+            "marks-modal": LocalJSX.MarksModal & JSXBase.HTMLAttributes<HTMLMarksModalElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
