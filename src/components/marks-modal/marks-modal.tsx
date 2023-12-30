@@ -52,8 +52,14 @@ export class MarksModal {
           <div class="body">
             <slot />
           </div>
-          <div class="footer">
+          {/* <div class="footer">
             <marks-button text="confirm" appearance={this.appearance}></marks-button>
+          </div> */}
+          <div class="footer">
+            {this._buttons.map((button, index) => (
+              // <marks-button text={button.text} appearance={index === 0 && this.appearance} />
+              <marks-button text={button.text} appearance={index === 0 && this.appearance}></marks-button>
+            ))}
           </div>
         </div>
       </div>
