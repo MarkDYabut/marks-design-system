@@ -8,11 +8,16 @@ import { Component, Host, h , Prop, getAssetPath} from '@stencil/core';
 })
 export class MarksModal {
 
+  @Prop({
+    mutable: true,
+    reflect: true,
+  })
+  @Prop() isopen: boolean;
   @Prop() closeIcon = 'x.svg';
 
   render() {
     return (
-      <div class="modal-wrapper">
+      <div class={this.isopen ? 'modal-wrapper isopen' : 'modal-wrapper'}>
         <div class="modal-overlay" />
         <div class="modal">
           <div class="header">

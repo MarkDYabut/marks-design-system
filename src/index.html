@@ -25,16 +25,21 @@
   <div class="container">
     <div class="row"><h3>Modal</h3></div>
     <div class="row space-between">
-      <marks-modal></marks-modal>
+      <marks-modal>Body content</marks-modal>
     </div>
   </div>
 </body>
 
 <script>
-  var btn = document.querySelector('#primary')
+  var btn = document.querySelector('marks-button');
+  var modal = document.querySelector('marks-modal');
+  
   btn.addEventListener('click', function() {
-    alert('Hello')
-  })
+    console.log('press')
+    console.log(modal)
+    modal.isopen = true;
+    console.log(modal)
+  });
 </script>
 
 </html>
