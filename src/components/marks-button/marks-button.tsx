@@ -8,10 +8,11 @@ import { Component, Host, h , Prop} from '@stencil/core';
 export class MarksButton {
 
   @Prop() text: string;
+  @Prop() appearance: string;
 
   render() {
     return (
-      <button class="btn" type="button">
+      <button class={`btn ${this.appearance}`} type="button">
         {this.text}
       </button>
     );
