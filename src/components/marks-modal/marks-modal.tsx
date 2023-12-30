@@ -40,6 +40,7 @@ export class MarksModal {
 
   private handleAction = () => {
     this.action.emit();
+    console.log('press from marks-modal.tsx')
   };
 
   render() {
