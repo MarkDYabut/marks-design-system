@@ -82,10 +82,18 @@ export class MyComponent {
     this.attack();
   }
 
+  // render() {
+  //   return <div>
+  //     <p>Hey Hello, World! I'm {this.getText()}</p>
+  //     <div>{this.data && JSON.stringify(this.data)}</div>
+  //   </div>;
+  // }
+
   render() {
-    return <div>
-      <p>Hey Hello, World! I'm {this.getText()}</p>
-      <div>{this.data && JSON.stringify(this.data)}</div>
-    </div>;
+    return (
+      <div>
+        Hello, World! I'm {this.getText()}
+      </div>
+    );
   }
 }
