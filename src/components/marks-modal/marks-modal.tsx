@@ -1,11 +1,14 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h , Prop, getAssetPath} from '@stencil/core';
 
 @Component({
   tag: 'marks-modal',
   styleUrl: 'marks-modal.css',
   shadow: true,
+  assetsDirs: ['assets'],
 })
 export class MarksModal {
+
+  @Prop() closeIcon = 'x.svg';
 
   render() {
     return (
@@ -14,13 +17,15 @@ export class MarksModal {
         <div class="modal">
           <div class="header">
             <h6>Modal Header</h6>
-            <div class="close">{/* Return x svg */}</div>
+            <div class="close">
+              <img src={getAssetPath(`./assets/${this.closeIcon}`)} alt="close icon" />  
+            </div>
           </div>
           <div class="body">
             <slot />
           </div>
           <div class="footer">
-            <apollo-button text="confirm" appearance="primary"></apollo-button>
+            <marks-button text="confirm" appearance="primary"></marks-button>
           </div>
         </div>
       </div>
