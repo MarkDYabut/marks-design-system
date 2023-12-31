@@ -88,16 +88,17 @@ export class MyComponent {
   }
 
   render() {
-    return <div class="v">
-      <p>Hey Hello, World! I'm {this.getText()}</p>
-      <p>Verse Ref: {this.data && this.verseRef}</p>
-      <p class="v">Verse: {this.verse && this.verse}</p>
+    return (
       <div>
-        Verse: <span innerHTML={this.verse} />
+        <p>Hello, World! I'm {this.getText()}</p>
+        <h3>Enjoy this bible passage below</h3>
+        <p>{this.data && this.verseRef}</p>
+        <p><span innerHTML={this.verse} /></p>
+        {/* <p>Verse: {this.verse && this.verse}</p>
+        <p>Raw Text</p>
+        <div>{this.data && JSON.stringify(this.data)}</div> */}
       </div>
-      <p>Raw Text</p>
-      <div>{this.data && JSON.stringify(this.data)}</div>
-    </div>;
+    );
   }
 
 }

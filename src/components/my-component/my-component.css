@@ -3,7 +3,7 @@
 }
 
 .v {
-  background-color: #313436;
-  font-size: 20;
   font-weight: bold;
+  vertical-align:super;  
+  font-size: xx-small;  
 }
