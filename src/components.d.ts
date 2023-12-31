@@ -6,6 +6,17 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface MarksButton {
+        "appearance": string;
+        "text": string;
+    }
+    interface MarksModal {
+        "appearance": string;
+        "buttons": string;
+        "closeIcon": string;
+        "header": string;
+        "isopen": boolean;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -21,7 +32,34 @@ export namespace Components {
         "middle": string;
     }
 }
+export interface MarksModalCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLMarksModalElement;
+}
 declare global {
+    interface HTMLMarksButtonElement extends Components.MarksButton, HTMLStencilElement {
+    }
+    var HTMLMarksButtonElement: {
+        prototype: HTMLMarksButtonElement;
+        new (): HTMLMarksButtonElement;
+    };
+    interface HTMLMarksModalElementEventMap {
+        "action": any;
+    }
+    interface HTMLMarksModalElement extends Components.MarksModal, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLMarksModalElementEventMap>(type: K, listener: (this: HTMLMarksModalElement, ev: MarksModalCustomEvent<HTMLMarksModalElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLMarksModalElementEventMap>(type: K, listener: (this: HTMLMarksModalElement, ev: MarksModalCustomEvent<HTMLMarksModalElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLMarksModalElement: {
+        prototype: HTMLMarksModalElement;
+        new (): HTMLMarksModalElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +67,24 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "marks-button": HTMLMarksButtonElement;
+        "marks-modal": HTMLMarksModalElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface MarksButton {
+        "appearance"?: string;
+        "text"?: string;
+    }
+    interface MarksModal {
+        "appearance"?: string;
+        "buttons"?: string;
+        "closeIcon"?: string;
+        "header"?: string;
+        "isopen"?: boolean;
+        "onAction"?: (event: MarksModalCustomEvent<any>) => void;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -48,6 +100,8 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "marks-button": MarksButton;
+        "marks-modal": MarksModal;
         "my-component": MyComponent;
     }
 }
@@ -55,6 +109,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "marks-button": LocalJSX.MarksButton & JSXBase.HTMLAttributes<HTMLMarksButtonElement>;
+            "marks-modal": LocalJSX.MarksModal & JSXBase.HTMLAttributes<HTMLMarksModalElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
