@@ -101,8 +101,7 @@ export class MyComponent {
         <div>
         {this.isLoading ?
             <span>
-              {/* <marks-spinner type="circle" color="green"></marks-spinner>  */}
-              <marks-button text="Requesting..." color="secondary" loader={false}></marks-button>
+              <marks-button text="Requesting..." color="secondary" loader={true}></marks-button>
             </span>
             :
             <marks-button

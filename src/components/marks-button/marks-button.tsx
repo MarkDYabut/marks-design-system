@@ -13,9 +13,9 @@ export class MarksButton {
 
   render() {
     return (
-      <button class={`btn ${this.appearance}`} type="button">
+      <button class={`btn ${this.appearance}`} type="button" disabled={this.loader}>
         {this.text}
-        {/* {this.loader ? <marks-spinner type="circle" color="green"></marks-spinner> : <div></div>} */}
+        {this.loader ? <marks-spinner type="circle" color="green"></marks-spinner> : <div></div>}
       </button>
     );
   }
