@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface MarksButton {
         "appearance": string;
+        "loader": boolean;
         "text": string;
     }
     interface MarksModal {
@@ -86,6 +87,7 @@ declare global {
 declare namespace LocalJSX {
     interface MarksButton {
         "appearance"?: string;
+        "loader"?: boolean;
         "text"?: string;
     }
     interface MarksModal {
