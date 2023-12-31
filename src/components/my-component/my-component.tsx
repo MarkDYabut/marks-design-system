@@ -99,10 +99,9 @@ export class MyComponent {
         <p>Hello, World! I'm {this.getText()}</p>
         <h3>Enjoy this bible passage below</h3>
         <div>
+        Loading? {this.isLoading ? "yes" : "no"}
         {this.isLoading ?
-            <span>
               <marks-button text="Requesting..." color="secondary" loader={true}></marks-button>
-            </span>
             :
             <marks-button
               onClick={this.handleAction}

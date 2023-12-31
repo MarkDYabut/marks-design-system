@@ -11,6 +11,8 @@ export namespace Components {
         "loader": boolean;
         "text": string;
     }
+    interface MarksIntegration {
+    }
     interface MarksModal {
         "appearance": string;
         "buttons": string;
@@ -48,6 +50,12 @@ declare global {
         prototype: HTMLMarksButtonElement;
         new (): HTMLMarksButtonElement;
     };
+    interface HTMLMarksIntegrationElement extends Components.MarksIntegration, HTMLStencilElement {
+    }
+    var HTMLMarksIntegrationElement: {
+        prototype: HTMLMarksIntegrationElement;
+        new (): HTMLMarksIntegrationElement;
+    };
     interface HTMLMarksModalElementEventMap {
         "action": any;
     }
@@ -79,6 +87,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "marks-button": HTMLMarksButtonElement;
+        "marks-integration": HTMLMarksIntegrationElement;
         "marks-modal": HTMLMarksModalElement;
         "marks-spinner": HTMLMarksSpinnerElement;
         "my-component": HTMLMyComponentElement;
@@ -89,6 +98,8 @@ declare namespace LocalJSX {
         "appearance"?: string;
         "loader"?: boolean;
         "text"?: string;
+    }
+    interface MarksIntegration {
     }
     interface MarksModal {
         "appearance"?: string;
@@ -118,6 +129,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "marks-button": MarksButton;
+        "marks-integration": MarksIntegration;
         "marks-modal": MarksModal;
         "marks-spinner": MarksSpinner;
         "my-component": MyComponent;
@@ -128,6 +140,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "marks-button": LocalJSX.MarksButton & JSXBase.HTMLAttributes<HTMLMarksButtonElement>;
+            "marks-integration": LocalJSX.MarksIntegration & JSXBase.HTMLAttributes<HTMLMarksIntegrationElement>;
             "marks-modal": LocalJSX.MarksModal & JSXBase.HTMLAttributes<HTMLMarksModalElement>;
             "marks-spinner": LocalJSX.MarksSpinner & JSXBase.HTMLAttributes<HTMLMarksSpinnerElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
