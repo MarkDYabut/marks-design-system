@@ -87,12 +87,21 @@ export class MyComponent {
     this.attack();
   }
 
+
+  private handleAction = () => {
+    this.attack();
+  };
+
   render() {
     return (
       <div>
         <p>Hello, World! I'm {this.getText()}</p>
         <h3>Enjoy this bible passage below</h3>
-        <p>{this.data && this.verseRef}</p>
+        <marks-button 
+                onClick={this.handleAction}
+                text="Request new passage"
+                appearance="primary" />
+        <h4>{this.data && this.verseRef}</h4>
         <p><span innerHTML={this.verse} /></p>
         {/* <p>Verse: {this.verse && this.verse}</p>
         <p>Raw Text</p>
