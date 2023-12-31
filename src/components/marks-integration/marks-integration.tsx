@@ -35,6 +35,10 @@ export class MarksIntegration {
       })
   }
 
+  private handleAction = () => {
+    this.newDriver();
+  };
+
   render() {
     return (
       <Host>
@@ -44,7 +48,7 @@ export class MarksIntegration {
             <marks-button text="Requesting..." color="secondary" loader={true}></marks-button>
           :
           <marks-button
-            onClick={this.newDriver}
+            onClick={this.handleAction}
             text="Request new driver"
             appearance=
             "primary" />
