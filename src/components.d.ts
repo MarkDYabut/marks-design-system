@@ -17,6 +17,10 @@ export namespace Components {
         "header": string;
         "isopen": boolean;
     }
+    interface MarksSpinner {
+        "color": any;
+        "type": any;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -60,6 +64,12 @@ declare global {
         prototype: HTMLMarksModalElement;
         new (): HTMLMarksModalElement;
     };
+    interface HTMLMarksSpinnerElement extends Components.MarksSpinner, HTMLStencilElement {
+    }
+    var HTMLMarksSpinnerElement: {
+        prototype: HTMLMarksSpinnerElement;
+        new (): HTMLMarksSpinnerElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -69,6 +79,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "marks-button": HTMLMarksButtonElement;
         "marks-modal": HTMLMarksModalElement;
+        "marks-spinner": HTMLMarksSpinnerElement;
         "my-component": HTMLMyComponentElement;
     }
 }
@@ -84,6 +95,10 @@ declare namespace LocalJSX {
         "header"?: string;
         "isopen"?: boolean;
         "onAction"?: (event: MarksModalCustomEvent<any>) => void;
+    }
+    interface MarksSpinner {
+        "color"?: any;
+        "type"?: any;
     }
     interface MyComponent {
         /**
@@ -102,6 +117,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "marks-button": MarksButton;
         "marks-modal": MarksModal;
+        "marks-spinner": MarksSpinner;
         "my-component": MyComponent;
     }
 }
@@ -111,6 +127,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "marks-button": LocalJSX.MarksButton & JSXBase.HTMLAttributes<HTMLMarksButtonElement>;
             "marks-modal": LocalJSX.MarksModal & JSXBase.HTMLAttributes<HTMLMarksModalElement>;
+            "marks-spinner": LocalJSX.MarksSpinner & JSXBase.HTMLAttributes<HTMLMarksSpinnerElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
