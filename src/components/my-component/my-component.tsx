@@ -27,6 +27,8 @@ export class MyComponent {
   }
 
   @State() data: any;
+  @State() verseRef: any;
+  @State() verse: any;
 
   private getVerse(): any {
     const VERSES = [
@@ -71,10 +73,13 @@ export class MyComponent {
       }
     }).then(res => res.json())
       .catch(error => console.error('Error:', error))
-      // .then(response => console.log('Success:', response))
       .then((data) => {
-        this.data = data;
-        console.log('Success', this.data)
+        this.data = data.data;
+        this.verse = data.data.passages[0].content;
+        this.verseRef = data.data.passages[0].reference;
+
+        console.log(this.verse);
+        console.log(this.verseRef);
       });
   }
 
@@ -82,18 +87,17 @@ export class MyComponent {
     this.attack();
   }
 
-  // render() {
-  //   return <div>
-  //     <p>Hey Hello, World! I'm {this.getText()}</p>
-  //     <div>{this.data && JSON.stringify(this.data)}</div>
-  //   </div>;
-  // }
-
   render() {
-    return (
+    return <div class="v">
+      <p>Hey Hello, World! I'm {this.getText()}</p>
+      <p>Verse Ref: {this.data && this.verseRef}</p>
+      <p class="v">Verse: {this.verse && this.verse}</p>
       <div>
-        Hello, World! I'm {this.getText()}
+        Verse: <span innerHTML={this.verse} />
       </div>
-    );
+      <p>Raw Text</p>
+      <div>{this.data && JSON.stringify(this.data)}</div>
+    </div>;
   }
+
 }
