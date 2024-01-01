@@ -11,14 +11,14 @@ export class MarksIntegration {
   @State() isLoading: boolean = false;
   @State() data: any;
 
-  private newDriver(): any {
+  async fetchData() {
     const url = "http://localhost:8080/Rest";
     const uri = url + "/driver/new";
     this.isLoading = true;
     console.log('loading', this.isLoading)
     fetch(uri, {
       method: 'GET',
-      // mode: 'no-cors',
+      // mode: 'no-cors', this breaks responses, handle cors on server side
       headers: {
         'Content-Type': 'application/json'
       }
@@ -39,7 +39,7 @@ export class MarksIntegration {
   }
 
   private handleAction = () => {
-    this.newDriver();
+    this.fetchData();
   };
 
   render() {
