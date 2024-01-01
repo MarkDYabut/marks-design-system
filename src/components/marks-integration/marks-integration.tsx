@@ -10,10 +10,11 @@ export class MarksIntegration {
   // http://localhost:8080/Rest/driver/new
   @State() isLoading: boolean = false;
   @State() data: any;
+  @State() drivers: string[] = [];
 
-  async fetchData() {
+  async fetchData(endpoint: string) {
     const url = "http://localhost:8080/Rest";
-    const uri = url + "/driver/new";
+    const uri = url + endpoint;
     this.isLoading = true;
     console.log('loading', this.isLoading)
     fetch(uri, {
@@ -38,8 +39,19 @@ export class MarksIntegration {
       })
   }
 
-  private handleAction = () => {
-    this.fetchData();
+  private handleNewDriver = () => {
+    this.fetchData("/driver/new");
+    this.drivers = this.data.allDrivers;
+  };
+
+  private handleGetDrivers = () => {
+    this.fetchData("/driver/viewDrivers");
+    this.drivers = this.data.allDrivers;
+  };
+
+  private handleDeleteDrivers = () => {
+    this.fetchData("/driver/destroyAll");
+    this.drivers = this.data.allDrivers;
   };
 
   render() {
@@ -51,12 +63,36 @@ export class MarksIntegration {
           <marks-button text="Requesting..." color="secondary" loader={true}></marks-button>
           :
           <marks-button
-            onClick={this.handleAction}
+            onClick={this.handleNewDriver}
             text="Request new driver"
             appearance=
             "primary" />
         }
         {this.data ? <p>Created: {this.data.createdDriver}</p> : <p>Request new driver now!</p>}
+        Loading? {this.isLoading ? "yes" : "no"}
+        {this.isLoading ?
+          <marks-button text="Requesting..." color="secondary" loader={true}></marks-button>
+          :
+          <marks-button
+            onClick={this.handleGetDrivers}
+            text="Request all drivers"
+            appearance=
+            "warning" />
+        }
+        <p>All Drivers:</p>
+        <ol>
+          {this.drivers.map((driver) => <li>{driver}</li>)}
+        </ol>
+        Loading? {this.isLoading ? "yes" : "no"}
+        {this.isLoading ?
+          <marks-button text="Requesting..." color="secondary" loader={true}></marks-button>
+          :
+          <marks-button
+            onClick={this.handleDeleteDrivers}
+            text="Delete all drivers"
+            appearance=
+            "danger" />
+        }
         <slot></slot>
       </Host>
     );
