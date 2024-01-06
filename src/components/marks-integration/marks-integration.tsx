@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State } from '@stencil/core';
+import { Component, Host, h, State } from '@stencil/core';
 
 @Component({
   tag: 'marks-integration',
