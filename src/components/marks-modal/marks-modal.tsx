@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, getAssetPath, State, EventEmitter, Event } from '@stencil/core';
+import { Component, h, Prop, getAssetPath, State, EventEmitter, Event } from '@stencil/core';
 
 @Component({
   tag: 'marks-modal',
