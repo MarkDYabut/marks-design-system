@@ -1,4 +1,4 @@
-import { Component, Host, h, State } from '@stencil/core';
+import { Component, Host, h, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'marks-integration',
@@ -11,6 +11,10 @@ export class MarksIntegration {
   @State() isLoading: boolean = false;
   @State() data: any;
   @State() drivers: string[] = [];
+  @Watch('data')
+  dataChanged() {
+    this.drivers = this.data.allDrivers;
+  }
 
   async fetchData(endpoint: string) {
     const url = "http://localhost:8080/Rest";
@@ -41,17 +45,14 @@ export class MarksIntegration {
 
   private handleNewDriver = () => {
     this.fetchData("/driver/new");
-    this.drivers = this.data.allDrivers;
   };
 
   private handleGetDrivers = () => {
     this.fetchData("/driver/viewDrivers");
-    this.drivers = this.data.allDrivers;
   };
 
   private handleDeleteDrivers = () => {
     this.fetchData("/driver/destroyAll");
-    this.drivers = this.data.allDrivers;
   };
 
   render() {
