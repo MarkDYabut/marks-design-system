@@ -13,11 +13,31 @@
 <body>
   <div class="container">
     <div class="row">
+      <h3>My First Integration</h3>
+    </div>
+    <marks-integration></marks-integration>
+  </div>
+  <div class="container">
+    <div class="row">
       <h3>My First Component</h3>
     </div>
     <my-component first="${first}Stencil" middle="${middle}Middle"
       last="${last}'Don't call me a framework' JS"></my-component>
   </div>
+  </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <h3>Spinner</h3>
+    </div>
+    <div class="row space-between">
+      <p>
+        <marks-spinner type="circle" color="green"></marks-spinner>
+        <marks-spinner type="bars" color="#333333"></marks-spinner>
+        <marks-spinner type="android" color="orange"></marks-spinner>
+        <marks-spinner type="ios" color="blue"></marks-spinner>
+      </p>
+    </div>
   </div>
   <div class="container">
     <div class="row">
@@ -37,8 +57,14 @@
     </div>
     <div class="row space-between">
       <marks-button id="marks-modal-button-id" appearance="primary" text="Open Modal"></marks-button>
-      <marks-modal buttons='[{"text":"Request"}, {"text":"Exit"}]' appearance="primary" header="Bible API Requester Modal">Body
-        content</marks-modal>
+      <marks-modal buttons='[{"text":"Request"}, {"text":"Exit"}]' appearance="primary"
+        header="Bible API Requester Modal">
+        <p>
+          Body content
+        </p>
+        <my-component first="Mark" middle="Dyllan"
+        last="aka Yabuuuuuuut"></my-component>
+      </marks-modal>
     </div>
   </div>
 </body>

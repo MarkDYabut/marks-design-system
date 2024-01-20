@@ -1,4 +1,4 @@
-import { Component, Host, h , Prop} from '@stencil/core';
+import { Component, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'marks-button',
@@ -9,11 +9,13 @@ export class MarksButton {
 
   @Prop() text: string;
   @Prop() appearance: string;
+  @Prop() loader: boolean;
 
   render() {
     return (
-      <button class={`btn ${this.appearance}`} type="button">
+      <button class={`btn ${this.appearance}`} type="button" disabled={this.loader}>
         {this.text}
+        {this.loader ? <marks-spinner type="circle" color="green"></marks-spinner> : <div></div>}
       </button>
     );
   }

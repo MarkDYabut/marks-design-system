@@ -8,7 +8,10 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface MarksButton {
         "appearance": string;
+        "loader": boolean;
         "text": string;
+    }
+    interface MarksIntegration {
     }
     interface MarksModal {
         "appearance": string;
@@ -16,6 +19,10 @@ export namespace Components {
         "closeIcon": string;
         "header": string;
         "isopen": boolean;
+    }
+    interface MarksSpinner {
+        "color": any;
+        "type": any;
     }
     interface MyComponent {
         /**
@@ -43,6 +50,12 @@ declare global {
         prototype: HTMLMarksButtonElement;
         new (): HTMLMarksButtonElement;
     };
+    interface HTMLMarksIntegrationElement extends Components.MarksIntegration, HTMLStencilElement {
+    }
+    var HTMLMarksIntegrationElement: {
+        prototype: HTMLMarksIntegrationElement;
+        new (): HTMLMarksIntegrationElement;
+    };
     interface HTMLMarksModalElementEventMap {
         "action": any;
     }
@@ -60,6 +73,12 @@ declare global {
         prototype: HTMLMarksModalElement;
         new (): HTMLMarksModalElement;
     };
+    interface HTMLMarksSpinnerElement extends Components.MarksSpinner, HTMLStencilElement {
+    }
+    var HTMLMarksSpinnerElement: {
+        prototype: HTMLMarksSpinnerElement;
+        new (): HTMLMarksSpinnerElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -68,14 +87,19 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "marks-button": HTMLMarksButtonElement;
+        "marks-integration": HTMLMarksIntegrationElement;
         "marks-modal": HTMLMarksModalElement;
+        "marks-spinner": HTMLMarksSpinnerElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
     interface MarksButton {
         "appearance"?: string;
+        "loader"?: boolean;
         "text"?: string;
+    }
+    interface MarksIntegration {
     }
     interface MarksModal {
         "appearance"?: string;
@@ -84,6 +108,10 @@ declare namespace LocalJSX {
         "header"?: string;
         "isopen"?: boolean;
         "onAction"?: (event: MarksModalCustomEvent<any>) => void;
+    }
+    interface MarksSpinner {
+        "color"?: any;
+        "type"?: any;
     }
     interface MyComponent {
         /**
@@ -101,7 +129,9 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "marks-button": MarksButton;
+        "marks-integration": MarksIntegration;
         "marks-modal": MarksModal;
+        "marks-spinner": MarksSpinner;
         "my-component": MyComponent;
     }
 }
@@ -110,7 +140,9 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "marks-button": LocalJSX.MarksButton & JSXBase.HTMLAttributes<HTMLMarksButtonElement>;
+            "marks-integration": LocalJSX.MarksIntegration & JSXBase.HTMLAttributes<HTMLMarksIntegrationElement>;
             "marks-modal": LocalJSX.MarksModal & JSXBase.HTMLAttributes<HTMLMarksModalElement>;
+            "marks-spinner": LocalJSX.MarksSpinner & JSXBase.HTMLAttributes<HTMLMarksSpinnerElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

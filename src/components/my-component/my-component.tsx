@@ -29,6 +29,7 @@ export class MyComponent {
   @State() data: any;
   @State() verseRef: any;
   @State() verse: any;
+  @State() isLoading: boolean = true;
 
   private getVerse(): any {
     const VERSES = [
@@ -63,7 +64,7 @@ export class MyComponent {
     const BIBLE_ID = `9879dbb7cfe39e4d-02`;
     const verseID = this.getVerse();
     const url = `https://api.scripture.api.bible/v1/bibles/${BIBLE_ID}/search?query=${verseID}`
-
+    this.isLoading = true;
     fetch(url, {
       method: 'GET',
       // mode: 'no-cors',
@@ -77,9 +78,9 @@ export class MyComponent {
         this.data = data.data;
         this.verse = data.data.passages[0].content;
         this.verseRef = data.data.passages[0].reference;
-
-        console.log(this.verse);
-        console.log(this.verseRef);
+        this.isLoading = false;
+        // console.log(this.verse);
+        // console.log(this.verseRef);
       });
   }
 
@@ -87,15 +88,31 @@ export class MyComponent {
     this.attack();
   }
 
+
+  private handleAction = () => {
+    this.attack();
+  };
+
   render() {
     return (
       <div>
         <p>Hello, World! I'm {this.getText()}</p>
         <h3>Enjoy this bible passage below</h3>
-        <p>{this.data && this.verseRef}</p>
+        <div>
+        Loading? {this.isLoading ? "yes" : "no"}
+        {this.isLoading ?
+              <marks-button text="Requesting..." color="secondary" loader={true}></marks-button>
+            :
+            <marks-button
+              onClick={this.handleAction}
+              text="Request new passage"
+              appearance=
+              "primary" />
+        }
+        </div>
+        <h4>{this.data && this.verseRef}</h4>
         <p><span innerHTML={this.verse} /></p>
-        {/* <p>Verse: {this.verse && this.verse}</p>
-        <p>Raw Text</p>
+        {/* <p>{this.verse && this.verse}</p>
         <div>{this.data && JSON.stringify(this.data)}</div> */}
       </div>
     );

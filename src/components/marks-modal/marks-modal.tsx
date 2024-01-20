@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, getAssetPath, State, EventEmitter, Event } from '@stencil/core';
+import { Component, h, Prop, getAssetPath, State, EventEmitter, Event } from '@stencil/core';
 
 @Component({
   tag: 'marks-modal',
@@ -40,6 +40,7 @@ export class MarksModal {
 
   private handleAction = () => {
     this.action.emit();
+    alert('Request');
     console.log('press from marks-modal.tsx')
   };
 
